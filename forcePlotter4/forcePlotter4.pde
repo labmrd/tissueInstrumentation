@@ -8,7 +8,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 8-7-20
+// last update: 8-21-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -48,6 +48,9 @@ boolean rect2Over = false;
 // Setup ----------------------------------------------------
 void setup() {
   size(1100, 900);
+  
+  //CHECK if device is plugged in on startup
+  //later check while running if device gets upplugged or plugged back in
   
   output = createWriter("fileName7.txt"); //create a new file in the sketch directory
   //get user input for file name ***
