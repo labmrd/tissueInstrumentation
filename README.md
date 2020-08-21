@@ -3,6 +3,10 @@ UMN-UW tissue instrumentation code repository
 
 This is Sarah's first edit to the readme file
 
-Need help figuring out how to run Processing code from external editor (Visual Studio Code)
+Note to Sarah: do not need to use an external editor for code <-> github
 
-Reminder: do not edit code in Processing directly, edit in Visual Studio Code
+Reminder: edit Processing code directly (can edit main branch directly), then save, then commit in github app, then push changes to repo
+
+
+Notes for using Processing code:
+
