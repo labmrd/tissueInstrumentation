@@ -5,7 +5,7 @@ This is Sarah's first edit to the readme file
 
 Note to Sarah: do not need to use an external editor for code <-> github
 
-Reminder: edit Processing code directly (can edit main branch directly), then save, then commit in github app, then push changes from local machine to everyone on github repo
+Reminder: edit Processing code directly (can edit main branch directly) in GitHub folder on local machine, then save, then commit in github app, then push changes from local machine to everyone on github repo
 
 
 Notes for using Processing code:  
