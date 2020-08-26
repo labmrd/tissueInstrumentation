@@ -277,6 +277,7 @@ void keyPressed() {   //*****************************************************
     //reset loop clears chars string
     c.reset();
     println(fileName);
+    //same as if user clicks enter button on gui screen
   }
   
 
@@ -391,11 +392,14 @@ void mousePressed() {
   
   // *************************************************************
   
-  if (fileNameOver) {   //if user clicks enter button instead of pressing enter key
-    //something like this...
-    fileName = userInput;
-    //use readString instead *****************
-    
+  if (fileNameOver) {   //if user clicks "enter"/"o" button
+    //set file name to chars typed by user
+    fileName = c.readString(); //userInput
+    //reset chars when current chars saved as userInput
+    //reset loop clears chars string
+    c.reset();
+    println(fileName);
+    //same as if user pressed enter key on keyboard
   }
   
   
