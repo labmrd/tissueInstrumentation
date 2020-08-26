@@ -22,7 +22,7 @@ String userInput = ""; //only in class?
 boolean fileNameOver = false;
 //put in fail-safe: get month-day-hour-minute for file name *****
 
-//MyText c = new MyText(200,810,25); //x position, y position, text size //825
+MyText c = new MyText(200,810,25); //x position, y position, text size //825
 
 
 String[] token; //for data
@@ -52,7 +52,7 @@ void setup() {
   //CHECK if device is plugged in on startup
   //later check while running if device gets upplugged or plugged back in
   
-  //c.activate(); //825
+  c.activate(); //825
   
   output = createWriter("fileName7.txt"); //create a new file in the sketch directory
   //get user input for file name ***
@@ -119,8 +119,8 @@ void draw() {
   text("Type file name (with .txt): ", 200, 775);
   //then use void keyPressed() and mousePressed() *** and update()?
   //maybe run update(mouseX, mouseY) after printing text to gui and asking for user input
-  text("fileName_hopefullyFromUser", 200, 810);
-  //c.display(); //see display loop //825
+  //text("fileName_hopefullyFromUser", 200, 810); //comment out for edit 825
+  c.display(); //see display loop //825
   //use readString to save userInput as fileName ***
   
   
@@ -234,13 +234,13 @@ void update(int x, int y) //need x and y here? what were they for?
 }
 
 void keyPressed() {   //*****************************************************
-  //old code
-  
+  //old code; comment out for edit 825
+  /*
   userInput += key;
   //if create own toString method, then: userInput = toString(userInput);
   println(userInput);
   //where is "null" from? because userInput is an object?
-  
+  */
   
   /*
   //limit to detect for alphanumeric characters
@@ -257,26 +257,27 @@ void keyPressed() {   //*****************************************************
   
   
   //new code //825
-  /*
+  
   if (keyAnalyzer(key).compareTo("LETTER") == 0 ||
       keyAnalyzer(key).compareTo("NUMBER") == 0 || 
       keyAnalyzer(key).compareTo("DASH") == 0)
   {
     c.addChar(key);
   }
+  
   if (keyCode == BACKSPACE)
   {
     c.deleteChar();
   }
   
-  if (key == '\n') {
+  if (key == '\n') {   //when user presses "enter" key
     //set file name to chars typed by user
     fileName = c.readString(); //userInput
     //reset chars when current chars saved as userInput
     //reset loop clears chars string
     c.reset();
     println(fileName);
-    */
+  }
   
 
 }
@@ -305,7 +306,6 @@ class MyText //825
 {
     float x;
     float y;
-    //String chars;
     String userInput;
     int numChars;
     boolean active;
@@ -317,7 +317,6 @@ class MyText //825
         this.y = y;
         active = false;
         this.font = font;
-        //chars = "";
         userInput = "";
         numChars = 0;
     }
@@ -327,20 +326,17 @@ class MyText //825
         line(x,y,x,y+font); //draw line for what? cursor? not visible; don't need
         //stroke(255); //make line visible
         textSize(font);
-        //text(chars,x,y);
         text(userInput,x,y);
     }
     
     void addChar(char c)
     {
-        //chars += c;
         userInput += c;
         numChars++;
     }
     
     String readString()
     {
-        //return chars;
         return userInput;
     }
     
@@ -361,15 +357,13 @@ class MyText //825
     
     void reset()
     {
-        //chars = "";
         userInput = "";
     }
     
     void deleteChar()
     {
             if (numChars > 0)
-            {        
-                  //chars = chars.substring(0,chars.length()-1);
+            {     
                   userInput = userInput.substring(0,userInput.length()-1);
                   numChars -= 1;
             }
@@ -397,9 +391,10 @@ void mousePressed() {
   
   // *************************************************************
   
-  if (fileNameOver) {
+  if (fileNameOver) {   //if user clicks enter button instead of pressing enter key
     //something like this...
     fileName = userInput;
+    //use readString instead *****************
     
   }
   
