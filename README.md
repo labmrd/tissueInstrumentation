@@ -11,11 +11,11 @@ To use code:
 
 2 - Look at plot to make sure computer is receiving input data from force tongs
 
-3 - Type desired file name; press enter keyboard or "o" enter button on GUI screen (in progress; user input is taken, but file not renamed yet)
+3 - Type desired file name; press enter keyboard or "o" enter button on GUI screen (fixed!)
 
-4 - Click green "Start" button to begin recording force data to a text file
+4 - Click green "Start" button to begin recording force data to a text file (GUI background becomes green while recording)
 
-5 - Click red "Stop" button to stop recording data
+5 - Click red "Stop" button to stop recording data (GUI background becomes red when recording stops)
 
 6 - Stop running code from Processing window when done
 
@@ -28,6 +28,8 @@ This is Sarah's first edit to the readme file
 Reminder: edit Processing code directly (can edit main branch directly) in GitHub folder on local machine, then save, then commit in github app, then push changes from local machine to everyone on github repo
 
 *Can code save multiple sets of data if user types a new file name in-between sets? If not, fix. On a basic level, yes, it can. Might change with future addtions.
+
+*Make "recording" light/circle on GUI that changes color while recording instead of whole background changing.
 
 Create fail-safe measures for:
 
