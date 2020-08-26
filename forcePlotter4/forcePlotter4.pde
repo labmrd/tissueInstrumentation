@@ -13,8 +13,8 @@ String inBuffer; //input from teensy serial
 
 boolean startRec = false; //for starting to record data from serial port
 PrintWriter output; //for saving data file
-String fileName = "";
 String userInput = ""; //only in class?
+String fileName = "";
 boolean fileNameOver = false;
 //put in fail-safe: get month-day-hour-minute for file name *****
 
@@ -46,21 +46,21 @@ boolean rect2Over = false;
 void setup() {
   size(1100, 900);
   
-  //CHECK if device is plugged in on startup
+  //CHECK if device is plugged in on startup ***
   //later check while running if device gets upplugged or plugged back in
   
   c.activate(); //825
   
-  // NOW TO SET USERINPUT AS THE ACTUAL FILE NAME ##########################
+  //File naming code
+  //manually change code here to change file name
+  output = createWriter("fileName9.txt"); //create new file in sketch directory
+  //set user input as file name instead of changing code above ##############################
+  //output = createWriter(fileName); //create new file in sketch directory
+  //need to call file naming func? call update()?
   
-  output = createWriter("fileName8.txt"); //create a new file in the sketch directory
-  //get user input for file name ***
-  //but also, put in fail-safe: get month-day-hour-minute for file name ***
-  //call file naming func? call update()?
+  //but also, put in fail-safe: get month-day-hour-minute to add to file name ***
   
-  //output = createWriter(fileName);
-  
-  //later get user input for directory to save file into ***
+  //later get user input for folder/directory to save file into ***
   //selectOutput("Select a file to write to: ", "fileSelected"); //edit24
   
   //printArray(Serial.list()); //temporary
@@ -74,8 +74,8 @@ void setup() {
   plot1.getTitle().setText("Catheter Insertion Force Over Time");
   plot1.getXAxis().getAxisLabel().setText("Time (ms)"); //xlabel
   plot1.getYAxis().getAxisLabel().setText("Force on Loadcell (g)"); //ylabel
-  //plot1.setPointColor(color(0,0,0,255)); //***
-  //plot1.setPointSize(2); //***
+  //plot1.setPointColor(color(0,0,0,255)); //can change if desired
+  //plot1.setPointSize(2); //can change if desired
   
   //Colors
   //w = width/2
@@ -169,6 +169,7 @@ void draw() {
       token = splitTokens(inBuffer, ","); //split string into tokens
       
       // CHOOSE WHICH LOADCELL TO TEST HERE ***************************************
+      // make this a user input later ###
       // the plot only displays force1 (force from flat-side of tongs)
       // change [1] to [2] to test/display force2
       yy = float(token[1]); //DAT1 (force1)
@@ -292,7 +293,7 @@ String keyAnalyzer(char c) //825
     {
         return "LETTER";
     }
-    else if (c == '_' || c == '-') //include space char?
+    else if (c == '_' || c == '-') //include space char or other chars?
     {
         return "DASH";
     }
@@ -323,8 +324,8 @@ class MyText //825
     
     void display()
     {
-        line(x,y,x,y+font); //draw line for what? cursor? not visible; don't need
-        //stroke(255); //make line visible
+        line(x,y,x,y+font); //draw line for what? cursor? don't need
+        //stroke(255); //make line certain color (compare to background color)
         textSize(font);
         text(userInput,x,y);
     }
