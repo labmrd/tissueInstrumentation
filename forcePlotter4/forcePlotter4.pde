@@ -53,7 +53,7 @@ void setup() {
   
   //File naming code
   //manually change code here to change file name
-  output = createWriter("fileName9.txt"); //create new file in sketch directory
+  output = createWriter("testingNewFileNaming1.txt"); //create new file in sketch directory
   //set user input as file name instead of changing code above ##############################
   //output = createWriter(fileName); //create new file in sketch directory
   //need to call file naming func? call update()?
@@ -121,6 +121,7 @@ void draw() {
   //text("fileName_hopefullyFromUser", 200, 810); //comment out for edit 825
   c.display(); //see display loop //825
   //use readString to save userInput as fileName ***
+  //here? //output = createWriter(fileName); //create new file in sketch directory
   
   
   if (rectOver) {
@@ -277,6 +278,7 @@ void keyPressed() {   //*****************************************************
     //reset loop clears chars string
     c.reset();
     println(fileName);
+    output = createWriter(fileName); //create new file in sketch directory //826
     //same as if user clicks enter button on gui screen
   }
   
@@ -399,6 +401,7 @@ void mousePressed() {
     //reset loop clears chars string
     c.reset();
     println(fileName);
+    output = createWriter(fileName); //create new file in sketch directory //826
     //same as if user pressed enter key on keyboard
   }
   
