@@ -1,10 +1,6 @@
 import processing.serial.*;
 import grafica.*;
 
-//this is the first github edit
-//this is the second github edit yay!
-//now without branching
-
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
@@ -22,6 +18,7 @@ String userInput = ""; //only in class?
 boolean fileNameOver = false;
 //put in fail-safe: get month-day-hour-minute for file name *****
 
+//get user input for file name
 MyText c = new MyText(200,810,25); //x position, y position, text size //825
 
 
@@ -54,7 +51,9 @@ void setup() {
   
   c.activate(); //825
   
-  output = createWriter("fileName7.txt"); //create a new file in the sketch directory
+  // NOW TO SET USERINPUT AS THE ACTUAL FILE NAME ##########################
+  
+  output = createWriter("fileName8.txt"); //create a new file in the sketch directory
   //get user input for file name ***
   //but also, put in fail-safe: get month-day-hour-minute for file name ***
   //call file naming func? call update()?
