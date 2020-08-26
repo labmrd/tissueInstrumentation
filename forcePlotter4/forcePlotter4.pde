@@ -8,7 +8,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 8-21-20
+// last update: 8-25-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -22,7 +22,7 @@ String userInput = ""; //only in class?
 boolean fileNameOver = false;
 //put in fail-safe: get month-day-hour-minute for file name *****
 
-//MyText c = new MyText(200,810,25); //x position, y position, text size
+//MyText c = new MyText(200,810,25); //x position, y position, text size //825
 
 
 String[] token; //for data
@@ -52,8 +52,11 @@ void setup() {
   //CHECK if device is plugged in on startup
   //later check while running if device gets upplugged or plugged back in
   
+  //c.activate(); //825
+  
   output = createWriter("fileName7.txt"); //create a new file in the sketch directory
   //get user input for file name ***
+  //but also, put in fail-safe: get month-day-hour-minute for file name ***
   //call file naming func? call update()?
   
   //output = createWriter(fileName);
@@ -117,6 +120,8 @@ void draw() {
   //then use void keyPressed() and mousePressed() *** and update()?
   //maybe run update(mouseX, mouseY) after printing text to gui and asking for user input
   text("fileName_hopefullyFromUser", 200, 810);
+  //c.display(); //see display loop //825
+  //use readString to save userInput as fileName ***
   
   
   if (rectOver) {
@@ -228,7 +233,9 @@ void update(int x, int y) //need x and y here? what were they for?
   
 }
 
-void keyPressed() {   //*****************************
+void keyPressed() {   //*****************************************************
+  //old code
+  
   userInput += key;
   //if create own toString method, then: userInput = toString(userInput);
   println(userInput);
@@ -246,8 +253,129 @@ void keyPressed() {   //*****************************
   
   //add a way to clear userInput or different way to write (text box)
   */
+  
+  
+  
+  //new code //825
+  /*
+  if (keyAnalyzer(key).compareTo("LETTER") == 0 ||
+      keyAnalyzer(key).compareTo("NUMBER") == 0 || 
+      keyAnalyzer(key).compareTo("DASH") == 0)
+  {
+    c.addChar(key);
+  }
+  if (keyCode == BACKSPACE)
+  {
+    c.deleteChar();
+  }
+  
+  if (key == '\n') {
+    //set file name to chars typed by user
+    fileName = c.readString(); //userInput
+    //reset chars when current chars saved as userInput
+    //reset loop clears chars string
+    c.reset();
+    println(fileName);
+    */
+  
 
 }
+
+String keyAnalyzer(char c) //825
+{
+    if (c >= '0' && c <= '9')
+    {
+        return "NUMBER";
+    }
+    else if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z')
+    {
+        return "LETTER";
+    }
+    else if (c == '_' || c == '-') //include space char?
+    {
+        return "DASH";
+    }
+    else
+    {
+        return "OTHER";
+    }
+}
+
+class MyText //825
+{
+    float x;
+    float y;
+    //String chars;
+    String userInput;
+    int numChars;
+    boolean active;
+    int font;
+    
+    MyText(float x, float y, int font)
+    {
+        this.x = x;
+        this.y = y;
+        active = false;
+        this.font = font;
+        //chars = "";
+        userInput = "";
+        numChars = 0;
+    }
+    
+    void display()
+    {
+        line(x,y,x,y+font); //draw line for what? cursor? not visible; don't need
+        //stroke(255); //make line visible
+        textSize(font);
+        //text(chars,x,y);
+        text(userInput,x,y);
+    }
+    
+    void addChar(char c)
+    {
+        //chars += c;
+        userInput += c;
+        numChars++;
+    }
+    
+    String readString()
+    {
+        //return chars;
+        return userInput;
+    }
+    
+    boolean isActive()
+    {
+        return active;
+    }
+    
+    void activate()
+    {
+        active = true;
+    }
+    
+    void deactivate()
+    {
+        active = false;
+    }
+    
+    void reset()
+    {
+        //chars = "";
+        userInput = "";
+    }
+    
+    void deleteChar()
+    {
+            if (numChars > 0)
+            {        
+                  //chars = chars.substring(0,chars.length()-1);
+                  userInput = userInput.substring(0,userInput.length()-1);
+                  numChars -= 1;
+            }
+    }
+}
+
 
 void mousePressed() {
   if (rectOver) {
@@ -309,6 +437,7 @@ boolean overRect2(int x, int y, int width, int height) {
   }
 }
 
+//not used yet; not sure it works
 void fileSelected(File selection) {   //edit24
   if (selection == null) {
     println("Window was closed or user hit cancel.");
