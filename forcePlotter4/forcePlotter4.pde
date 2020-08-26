@@ -295,7 +295,7 @@ String keyAnalyzer(char c) //825
     {
         return "LETTER";
     }
-    else if (c == '_' || c == '-') //include space char or other chars?
+    else if (c == '_' || c == '-' || c == '.') //include space char or other chars?
     {
         return "DASH";
     }
