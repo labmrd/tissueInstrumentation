@@ -17,9 +17,7 @@ To use code:
 
 6 - Stop running code from Processing window when done
 
-
-/n
-/n
+*****
 
 Sarah's notes:
 
