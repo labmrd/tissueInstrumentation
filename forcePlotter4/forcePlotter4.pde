@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 8-25-20
+// last update: 8-26-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -60,7 +60,7 @@ void setup() {
   
   //but also, put in fail-safe: get month-day-hour-minute to add to file name ***
   
-  //later get user input for folder/directory to save file into ***
+  //later get user input for folder/directory to save file into ### FIX
   //selectOutput("Select a file to write to: ", "fileSelected"); //edit24
   
   //printArray(Serial.list()); //temporary
