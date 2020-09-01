@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 8-26-20
+// last update: 9-1-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -32,10 +32,14 @@ int rect1X, rect1Y;   //position of start button
 int rect2X, rect2Y;   //position of stop button
 int rectSize = 120;   //size of button sides (height and width are equal)
 
+int circX, circY;   //position of data recording indicator
+int circSize = 15;  //size of data recording indicator
+
 int nameX, nameY;   //position of file-naming submit button
 int nameSize = 50;  //size of file-naming submit button
 
-color rect1Color, rect2Color, baseColor, nameColor;
+color rect1Color, rect2Color, baseColor, nameColor, circColor;
+color offColor, onColor;
 color rectHighlight, rect2Highlight;
 color currentColor;
 boolean rectOver = false;
@@ -78,31 +82,32 @@ void setup() {
   //plot1.setPointSize(2); //can change if desired
   
   //Colors
-  //w = width/2
-  //h = height/2
   rect1Color = color(0,200,50);   //green for start
   rect2Color = color(200,0,0);    //red for stop
+  //currentColor = color(200,0,0);
+  offColor = color(200,0,0);      //if not recording data, indicator "off"/red
+  onColor = color(0,200,50);      //if recording data, indicator "on"/green
   //(0,255,0) is green, (0,0,255) is blue, (255,0,0) is red
   rectHighlight = color(0,150,30);   //dull green
   rect2Highlight = color(150,0,0);   //dull red
   baseColor = color(100);   //gray
-  currentColor = baseColor;
+  //currentColor = baseColor;
+  circColor = offColor;     //begin with recording indicator "off"/red
   nameColor = color(0,0,255);
   
-  //Position of buttons
+  //Position of buttons & indicators
   rect1X = 200; //width/2-rectSize-60;//half rect size
   rect2X = 780; //width/2+rectSize;
   rect1Y = 100; //height/2-rectSize/2;
   rect2Y = 100; //height/2-rectSize/2;
   
+  circX = 200;
+  circY = 75;
+  ellipseMode(CENTER);
+  
   nameX = 850;
   nameY = 750;
   
-  //use later? is this a better way?
-  //addButton = createButton('Start');
-  //addButton.size(100, 50)
-  //addButton.position(w, height - 200)
-  //addButton.mousePressed(doSomething)
   
 }
 
@@ -110,7 +115,8 @@ void setup() {
 // Draw -----------------------------------------------------
 void draw() {
   update(mouseX, mouseY);
-  background(currentColor);
+  //background(currentColor);
+  background(baseColor);
   
   //ask for user input for file name and display it
   fill(0);
@@ -124,6 +130,7 @@ void draw() {
   //here? //output = createWriter(fileName); //create new file in sketch directory
   
   
+  //create start and stop recording buttons
   if (rectOver) {
     fill(rectHighlight);
   }
@@ -142,9 +149,13 @@ void draw() {
   stroke(255);
   rect(rect2X, rect2Y, rectSize, rectSize);
   
-  fill(nameColor);
+  fill(nameColor);   //create file-naming enter button
   stroke(255);
   rect(nameX, nameY, nameSize, nameSize);
+  
+  fill(circColor);   //create data recording indicator circle
+  stroke(255);
+  ellipse(circX, circY, circSize, circSize);
   
   
   // Text on buttons
@@ -157,6 +168,9 @@ void draw() {
   fill(255);
   textSize(50);
   text("o", nameX + 10, nameY + 40); //submit button for file name
+  fill(200);
+  textSize(30);
+  text("Recording", circX+10, circY-10); //text next to data recording indicator
   
   
   while (myPort.available() > 0)
@@ -376,7 +390,8 @@ class MyText //825
 
 void mousePressed() {
   if (rectOver) {
-    currentColor = rect1Color;
+    //currentColor = rect1Color;
+    circColor = onColor;
     //start recording data ***
     //output.println("test: " + inBuffer); //only prints inBuffer at moment button pressed
     //set some value to true, then print inBuffer in main draw loop
@@ -385,7 +400,8 @@ void mousePressed() {
   }
   
   if (rect2Over) {
-    currentColor = rect2Color;
+    //currentColor = rect2Color;
+    circColor = offColor;
     //stop recording data and save to file ***
     output.flush(); //write remaining data
     output.close(); //finish making file
