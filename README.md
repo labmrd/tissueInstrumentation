@@ -1,4 +1,4 @@
-# tissue_Instrumentation (in progress, yet functional)
+# tissueInstrumentation (in progress, yet functional)
 UMN-UW tissue instrumentation code repository
 
 *****
