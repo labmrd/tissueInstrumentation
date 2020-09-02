@@ -16,7 +16,16 @@ PrintWriter output; //for saving data file
 String userInput = ""; //only in class?
 String fileName = "";
 boolean fileNameOver = false;
-//put in fail-safe: get month-day-hour-minute for file name *****
+//add date and time stamps for good data collection and as a fail-safe for file naming
+int mon = month();
+int d = day();
+int y = year();
+String date = String.valueOf(mon) + "-" + String.valueOf(d) + "-" + String.valueOf(y);
+int h; //h = hour();
+int min; //min = minute();
+int s; //s = second();
+String time;
+String time2; //just in case user doesn't input file name
 
 //get user input for file name
 MyText c = new MyText(200,810,25); //x position, y position, text size //825
@@ -33,7 +42,7 @@ int rect2X, rect2Y;   //position of stop button
 int rectSize = 120;   //size of button sides (height and width are equal)
 
 int circX, circY;   //position of data recording indicator
-int circSize = 15;  //size of data recording indicator
+int circSize = 20;  //size of data recording indicator
 
 int nameX, nameY;   //position of file-naming submit button
 int nameSize = 50;  //size of file-naming submit button
@@ -55,14 +64,18 @@ void setup() {
   
   c.activate(); //825
   
-  //File naming code
+  //Fail-safe file naming code (if user doesn't type file name input)
+  //add date & time stamp to end of name
+  h = hour();
+  min = minute();
+  s = second();
+  time2 = String.valueOf(h) + String.valueOf(min) + String.valueOf(s);
   //manually change code here to change file name
-  output = createWriter("testingNewFileNaming1.txt"); //create new file in sketch directory
-  //set user input as file name instead of changing code above ##############################
+  //create new file in sketch directory
+  output = createWriter("tempFileName1" + "_" + date + "_" + time2 + ".csv"); //.txt
+  //set user input as file name later in code
   //output = createWriter(fileName); //create new file in sketch directory
   //need to call file naming func? call update()?
-  
-  //but also, put in fail-safe: get month-day-hour-minute to add to file name ***
   
   //later get user input for folder/directory to save file into ### FIX
   //selectOutput("Select a file to write to: ", "fileSelected"); //edit24
@@ -118,10 +131,12 @@ void draw() {
   //background(currentColor);
   background(baseColor);
   
+  //get time stamp here for user messing up multiple times during one run ###
+  
   //ask for user input for file name and display it
   fill(0);
   textSize(25);
-  text("Type file name (with .txt): ", 200, 775);
+  text("TYPE FILE NAME (without .csv or .txt): ", 200, 775);
   //then use void keyPressed() and mousePressed() *** and update()?
   //maybe run update(mouseX, mouseY) after printing text to gui and asking for user input
   //text("fileName_hopefullyFromUser", 200, 810); //comment out for edit 825
@@ -185,6 +200,7 @@ void draw() {
       
       // CHOOSE WHICH LOADCELL TO TEST HERE ***************************************
       // make this a user input later ###
+      // or just plot both ###
       // the plot only displays force1 (force from flat-side of tongs)
       // change [1] to [2] to test/display force2
       yy = float(token[1]); //DAT1 (force1)
@@ -286,14 +302,21 @@ void keyPressed() {   //*****************************************************
   }
   
   if (key == '\n') {   //when user presses "enter" key
-    //set file name to chars typed by user
-    fileName = c.readString(); //userInput
+    //set file name to chars typed by user followed by data and time stamps //9120
+    //get current time
+    h = hour();
+    min = minute();
+    s = second();
+    time = String.valueOf(h) + String.valueOf(min) + String.valueOf(s);
+    //println(time);
+    fileName = c.readString() + "_" + date + "_" + time + ".csv"; //userInput with date and time stamps and file extension
     //reset chars when current chars saved as userInput
     //reset loop clears chars string
     c.reset();
     println(fileName);
     output = createWriter(fileName); //create new file in sketch directory //826
     //same as if user clicks enter button on gui screen
+    
   }
   
 
@@ -408,17 +431,23 @@ void mousePressed() {
     
   }
   
-  // *************************************************************
   
   if (fileNameOver) {   //if user clicks "enter"/"o" button
-    //set file name to chars typed by user
-    fileName = c.readString(); //userInput
+    //set file name to chars typed by user followed by date and time stamps //9120
+    //get current time
+    h = hour();
+    min = minute();
+    s = second();
+    time = String.valueOf(h) + String.valueOf(min) + String.valueOf(s);
+    //println(time);
+    fileName = c.readString() + "_" + date + "_" + time + ".csv"; //userInput with date and time stamps and file extension
     //reset chars when current chars saved as userInput
     //reset loop clears chars string
     c.reset();
     println(fileName);
     output = createWriter(fileName); //create new file in sketch directory //826
     //same as if user pressed enter key on keyboard
+    
   }
   
   
