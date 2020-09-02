@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 9-1-20
+// last update: 9-2-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -26,7 +26,7 @@ int min; //min = minute();
 int s; //s = second();
 String time;
 String time2; //just in case user doesn't input file name
-String HEADER_TEXT = "%, jaw1 [N], jaw2 [N], time [ms], gripForce [N]";
+String HEADER_TEXT = "%, jaw1 [N], jaw2 [N], time [ms], gripForce [N]"; //add titles and units to each data column
 
 //get user input for file name
 MyText c = new MyText(200,810,25); //x position, y position, text size //825
@@ -219,7 +219,7 @@ void draw() {
     
     if (startRec == true) {
       //output.println("try this too: " + inBuffer);
-      output.print(inBuffer);
+      output.print(inBuffer); //9220 //got rid of ln; println messed up spacing in dataset
       
     }
     
