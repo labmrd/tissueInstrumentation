@@ -26,6 +26,7 @@ int min; //min = minute();
 int s; //s = second();
 String time;
 String time2; //just in case user doesn't input file name
+String HEADER_TEXT = "%, jaw1 [N], jaw2 [N], time [ms], gripForce [N]";
 
 //get user input for file name
 MyText c = new MyText(200,810,25); //x position, y position, text size //825
@@ -73,6 +74,7 @@ void setup() {
   //manually change code here to change file name
   //create new file in sketch directory
   output = createWriter("tempFileName1" + "_" + date + "_" + time2 + ".csv"); //.txt
+  output.println(HEADER_TEXT);
   //set user input as file name later in code
   //output = createWriter(fileName); //create new file in sketch directory
   //need to call file naming func? call update()?
@@ -217,7 +219,8 @@ void draw() {
     
     if (startRec == true) {
       //output.println("try this too: " + inBuffer);
-      output.println(inBuffer);
+      output.print(inBuffer);
+      
     }
     
   }
@@ -315,6 +318,7 @@ void keyPressed() {   //*****************************************************
     c.reset();
     println(fileName);
     output = createWriter(fileName); //create new file in sketch directory //826
+    output.println(HEADER_TEXT);
     //same as if user clicks enter button on gui screen
     
   }
@@ -446,6 +450,7 @@ void mousePressed() {
     c.reset();
     println(fileName);
     output = createWriter(fileName); //create new file in sketch directory //826
+    output.println(HEADER_TEXT);
     //same as if user pressed enter key on keyboard
     
   }
