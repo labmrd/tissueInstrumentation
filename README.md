@@ -5,7 +5,7 @@ UMN-UW tissue instrumentation code repository
 
 To use code:
 
-0 - Open forcePlotter4.pde code with Processing (32 bit)
+0 - Open forcePlotter.pde code with Processing (32 bit) - NOTE: forcePlotter4.pde is old code
 
 1 - Make sure force tongs device is plugged into computer
 
@@ -35,8 +35,8 @@ Create fail-safe measures for:
 
 1 - device not plugged in
 
-2 - user didn't enter new file name (add date+time stamp to end of file name; add date+time stamp whether or not user entered file name (time when start button pressed?)
+2 - user enters new file name partway through?
 
-3 - user enters new file name partway through? ask user if want to start new file/dataset or continue old dataset and old name?
+3 - calibration program running instead of read?
 
 4 - anything else?
