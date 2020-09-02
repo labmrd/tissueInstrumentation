@@ -11,7 +11,7 @@ To use code:
 
 2 - Look at plot to make sure computer is receiving input data from force tongs
 
-3 - Type desired file name; press enter keyboard or "o" enter button on GUI screen (fixed!)
+3 - Type desired file name; press enter keyboard or "o" enter button on GUI screen (date and time stamps added; fail-safe file name in place)
 
 4 - Click green "Start" button to begin recording force data to a text file (data recording indicator circle becomes green while recording)
 
