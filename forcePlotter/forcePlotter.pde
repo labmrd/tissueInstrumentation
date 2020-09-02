@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 9-1-20
+// last update: 9-2-20 new
 
 
 // Variables, objects, etc ---------------------------------
@@ -26,6 +26,7 @@ int min; //min = minute();
 int s; //s = second();
 String time;
 String time2; //just in case user doesn't input file name
+//add titles and units to each data column
 String HEADER_TEXT = "%, jaw1 [N], jaw2 [N], time [ms], gripForce [N]";
 
 //get user input for file name
@@ -100,14 +101,14 @@ void setup() {
   rect1Color = color(0,200,50);   //green for start
   rect2Color = color(200,0,0);    //red for stop
   //currentColor = color(200,0,0);
-  offColor = color(200,0,0);      //if not recording data, indicator "off"/red
-  onColor = color(0,200,50);      //if recording data, indicator "on"/green
+  offColor = color(100);      //if not recording data, indicator "off"/gray
+  onColor = color(250,0,0);      //if recording data, indicator "on"/red
   //(0,255,0) is green, (0,0,255) is blue, (255,0,0) is red
   rectHighlight = color(0,150,30);   //dull green
   rect2Highlight = color(150,0,0);   //dull red
   baseColor = color(100);   //gray
   //currentColor = baseColor;
-  circColor = offColor;     //begin with recording indicator "off"/red
+  circColor = offColor;     //begin with recording indicator "off"/gray
   nameColor = color(0,0,255);
   
   //Position of buttons & indicators
@@ -219,7 +220,7 @@ void draw() {
     
     if (startRec == true) {
       //output.println("try this too: " + inBuffer);
-      output.print(inBuffer);
+      output.print(inBuffer); //println was causing weird dataset spacing; just print now
       
     }
     
