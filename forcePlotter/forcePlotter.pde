@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 9-3-20
+// last update: 9-4-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -30,9 +30,9 @@ String time;
 String time2; //just in case user doesn't input file name
 
 //add titles and units to each data column
-String HEADER_TEXT = "%, jaw1 [mN], jaw2 [mN], time [ms], gripForce [mN]";
+String HEADER_TEXT = "%, jaw1 [g], jaw2 [g], time [ms], gripForce [g]";
 //                      loadcell1,  loadcell2,  millis,  loadcellsum
-//CHANGE milliNewtons to just plain Newtons (change in Arduino read program) ***FIX
+//CHANGE grams of force (milliNewtons?) to just Newtons (change in Arduino read program) ***FIX
 
 //get user input for file name
 MyText c = new MyText(200,810,25); //x position, y position, text size //825
