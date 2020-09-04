@@ -13,9 +13,9 @@ To use code:
 
 3 - Type desired file name; press enter keyboard or "o" enter button on GUI screen (date and time stamps added; fail-safe file name in place)
 
-4 - Click green "Start" button to begin recording force data to a text file (data recording indicator circle becomes green while recording)
+4 - Click green "Start" button to begin recording force data to a text file (data recording indicator circle lights red while recording)
 
-5 - Click red "Stop" button to stop recording data (data recording indicator circle becomes red when recording stops)
+5 - Click red "Stop" button to stop recording data (data recording indicator circle becomes gray when recording stops)
 
 6 - Can type new file name and record new data file if desired (repeat steps 3 - 6)
 
