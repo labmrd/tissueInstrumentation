@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 9-2-20 new
+// last update: 9-3-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -12,6 +12,7 @@ Serial myPort;
 String inBuffer; //input from teensy serial
 
 boolean startRec = false; //for starting to record data from serial port
+String recText = "not recording";
 PrintWriter output; //for saving data file
 String userInput = ""; //only in class?
 String fileName = "";
@@ -117,8 +118,8 @@ void setup() {
   rect1Y = 100; //height/2-rectSize/2;
   rect2Y = 100; //height/2-rectSize/2;
   
-  circX = 200;
-  circY = 75;
+  circX = 210;
+  circY = 50;
   ellipseMode(CENTER);
   
   nameX = 850;
@@ -188,7 +189,7 @@ void draw() {
   text("o", nameX + 10, nameY + 40); //submit button for file name
   fill(200);
   textSize(30);
-  text("Recording", circX+10, circY-10); //text next to data recording indicator
+  text(recText, circX+15, circY+10); //text next to data recording indicator
   
   
   while (myPort.available() > 0)
@@ -221,7 +222,11 @@ void draw() {
     if (startRec == true) {
       //output.println("try this too: " + inBuffer);
       output.print(inBuffer); //println was causing weird dataset spacing; just print now
+      recText = "recording";
       
+    }
+    else {
+      recText = "not recording";
     }
     
   }
@@ -433,6 +438,7 @@ void mousePressed() {
     //stop recording data and save to file ***
     output.flush(); //write remaining data
     output.close(); //finish making file
+    startRec = false;
     
   }
   
