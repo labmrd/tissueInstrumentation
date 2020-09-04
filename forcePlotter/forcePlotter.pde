@@ -17,6 +17,7 @@ PrintWriter output; //for saving data file
 String userInput = ""; //only in class?
 String fileName = "";
 boolean fileNameOver = false;
+
 //add date and time stamps for good data collection and as a fail-safe for file naming
 int mon = month();
 int d = day();
@@ -27,12 +28,14 @@ int min; //min = minute();
 int s; //s = second();
 String time;
 String time2; //just in case user doesn't input file name
+
 //add titles and units to each data column
-String HEADER_TEXT = "%, jaw1 [N], jaw2 [N], time [ms], gripForce [N]";
+String HEADER_TEXT = "%, jaw1 [mN], jaw2 [mN], time [ms], gripForce [mN]";
+//                      loadcell1,  loadcell2,  millis,  loadcellsum
+//CHANGE milliNewtons to just plain Newtons (change in Arduino read program) ***FIX
 
 //get user input for file name
 MyText c = new MyText(200,810,25); //x position, y position, text size //825
-
 
 String[] token; //for data
 int xx;
@@ -189,7 +192,7 @@ void draw() {
   text("o", nameX + 10, nameY + 40); //submit button for file name
   fill(200);
   textSize(30);
-  text(recText, circX+15, circY+10); //text next to data recording indicator
+  text(recText, circX+20, circY+10); //text next to data recording indicator
   
   
   while (myPort.available() > 0)
