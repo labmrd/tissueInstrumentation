@@ -3,7 +3,7 @@ UMN-UW tissue instrumentation code repository
 
 *****
 
-Have Processing (32 bit) installed on your machine
+Have Processing (32 bit) installed on your machine: https://processing.org/download/ 
 
 Have Grafica library installed as well:
 
