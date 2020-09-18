@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 9-4-20
+// last update: 9-18-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -88,7 +88,7 @@ void setup() {
   //selectOutput("Select a file to write to: ", "fileSelected"); //edit24
   
   //printArray(Serial.list()); //temporary
-  myPort = new Serial(this,Serial.list()[0],9600); //[0] is port number Teensy is using
+  myPort = new Serial(this,Serial.list()[0],9600); //[0] is port number Teensy is using (Sarah's laptop & Alienware laptop)
   //myPort.bufferUntil('\n'); //could use later //a serialEvent() generated when newline found
   
   plot1 = new GPlot(this);
