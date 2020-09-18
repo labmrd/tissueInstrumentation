@@ -3,6 +3,14 @@ UMN-UW tissue instrumentation code repository
 
 *****
 
+Have Processing (32 bit) installed on your machine: https://processing.org/download/ 
+
+Have Grafica library installed as well:
+
+Go to "Sketch" tab in Processing window; then scroll-over "Import Library..." and select "Add Library..."; in the new libraries window search for "grafica"; click on the line that says "grafica: create simple and configurable 2D plots..." and then click "Install down in the right-hand corner; now you can run the code
+
+***
+
 To use code:
 
 0 - Open forcePlotter.pde code with Processing (32 bit) - NOTE: forcePlotter4.pde is old code
