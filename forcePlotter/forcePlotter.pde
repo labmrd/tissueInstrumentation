@@ -4,7 +4,7 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 9-30-20
+// last update: 10-5-20
 
 
 // Variables, objects, etc ---------------------------------
@@ -35,7 +35,7 @@ String HEADER_TEXT = "%, jaw1 [g], jaw2 [g], time [ms], gripForce [g]";
 //CHANGE grams of force (milliNewtons?) to just Newtons (change in Arduino read program) ***FIX
 
 //get user input for file name
-MyText c = new MyText(200,810,25); //x position, y position, text size //825
+MyText c = new MyText(50,625,25); //(200,810,25); //x position, y position, text size //825
 
 String[] token; //for data
 int xx;
@@ -45,7 +45,7 @@ GPlot plot1; //for graph
 
 int rect1X, rect1Y;   //position of start button
 int rect2X, rect2Y;   //position of stop button
-int rectSize = 120;   //size of button sides (height and width are equal)
+int rectSize = 100;   //120;   //size of button sides (height and width are equal)
 
 int circX, circY;   //position of data recording indicator
 int circSize = 20;  //size of data recording indicator
@@ -63,8 +63,8 @@ boolean rect2Over = false;
 
 // Setup ----------------------------------------------------
 void setup() {
-  //size(1100, 900);
-  size(950, 825); //alienware laptop (data collection at clinic) much smaller
+  //size(1100, 900); //Sarah's laptop
+  size(750, 650); //Alienware laptop (data collection at clinic) very small size...
   
   //CHECK if device is plugged in on startup ***
   //later check while running if device gets upplugged or plugged back in
@@ -93,8 +93,8 @@ void setup() {
   //myPort.bufferUntil('\n'); //could use later //a serialEvent() generated when newline found
   
   plot1 = new GPlot(this);
-  plot1.setPos(200,275);
-  plot1.setDim(600,350); //grafica adds 100 pixels to plot
+  plot1.setPos(50,150); //(200,275);
+  plot1.setDim(550,300); //(600,350); //grafica adds 100 pixels to plot
   //other plot setup stuff here
   plot1.getTitle().setText("Catheter Insertion Force Over Time");
   plot1.getXAxis().getAxisLabel().setText("Time (ms)"); //xlabel
@@ -117,17 +117,17 @@ void setup() {
   nameColor = color(0,0,255);
   
   //Position of buttons & indicators
-  rect1X = 200; //width/2-rectSize-60;//half rect size
-  rect2X = 780; //width/2+rectSize;
-  rect1Y = 100; //height/2-rectSize/2;
-  rect2Y = 100; //height/2-rectSize/2;
+  rect1X = 450; //200; //width/2-rectSize-60;//half rect size
+  rect2X = 600; //780; //width/2+rectSize;
+  rect1Y = 25;  //100; //height/2-rectSize/2;
+  rect2Y = 25;  //100; //height/2-rectSize/2;
   
-  circX = 210;
-  circY = 50;
+  circX = 60; //210;
+  circY = 75; //50;
   ellipseMode(CENTER);
   
-  nameX = 850;
-  nameY = 750;
+  nameX = 650; //850;
+  nameY = 575; //750;
   
   
 }
@@ -144,7 +144,7 @@ void draw() {
   //ask for user input for file name and display it
   fill(0);
   textSize(25);
-  text("TYPE FILE NAME (without .csv or .txt): ", 200, 775);
+  text("TYPE FILE NAME (without .csv or .txt): ", 50, 600); //200,775
   //then use void keyPressed() and mousePressed() *** and update()?
   //maybe run update(mouseX, mouseY) after printing text to gui and asking for user input
   //text("fileName_hopefullyFromUser", 200, 810); //comment out for edit 825
@@ -184,13 +184,13 @@ void draw() {
   // Text on buttons
   fill(0);
   textSize(30);
-  text("Start", rect1X + rectSize/4, rect1Y + rectSize/2);
+  text("Start", rect1X+rectSize/2-30, rect1Y+rectSize/2+25/2); //rect1X + rectSize/4, rect1Y + rectSize/2);
   fill(0);
   textSize(30);
-  text("Stop", rect2X + rectSize/4, rect2Y + rectSize/2);
+  text("Stop", rect2X+rectSize/2-30, rect2Y+rectSize/2+25/2); //rect2X + rectSize/4, rect2Y + rectSize/2);
   fill(255);
-  textSize(50);
-  text("o", nameX + 10, nameY + 40); //submit button for file name
+  textSize(15); //50
+  text("Enter", nameX+7, nameY+30); //("o", nameX + 10, nameY + 40); //submit button for file name
   fill(200);
   textSize(30);
   text(recText, circX+20, circY+10); //text next to data recording indicator
@@ -377,7 +377,7 @@ class MyText //825
     
     void display()
     {
-        line(x,y,x,y+font); //draw line for what? cursor? don't need
+        //line(x,y,x,y+font); //draw line for what? cursor? don't need
         //stroke(255); //make line certain color (compare to background color)
         textSize(font);
         text(userInput,x,y);
