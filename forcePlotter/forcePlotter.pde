@@ -4,8 +4,10 @@ import grafica.*;
 // Serial Plotter, Start Button, Stop Button, and File Name Selection
 // for catheter insertion force measurement project
 // Sarah Hanson
-// last update: 10-5-20
+// last update: 3-2-21
 
+// NOTES: to create & save new data files in Box drive, could just have Processing sketch in Box directory
+// this makes it difficult to update the Processing code, but easy for data files
 
 // Variables, objects, etc ---------------------------------
 Serial myPort;
@@ -80,6 +82,9 @@ void setup() {
   //manually change code here to change file name
   //create new file in sketch directory
   output = createWriter("tempFileName1" + "_" + date + "_" + time2 + ".csv"); //.txt
+  //create new file in Box directory //***//***//***//
+  //output = createWriter ( "C: \\ folder1 \\ folder2 \\ mytextfile.txt" ); //or
+  //output = createWriter ( "C: /folder1/folder2/mytextfile.txt" );
   output.println(HEADER_TEXT);
   //set user input as file name later in code
   //output = createWriter(fileName); //create new file in sketch directory
@@ -87,6 +92,8 @@ void setup() {
   
   //later get user input for folder/directory to save file into ### FIX
   //selectOutput("Select a file to write to: ", "fileSelected"); //edit24
+  //OR just save to Box drive directly ***** how?
+  
   
   //printArray(Serial.list()); //temporary //COM4 Sarah's laptop
   myPort = new Serial(this,Serial.list()[0],9600); //[0] is port number Teensy is using (Sarah's laptop & Alienware laptop)
@@ -107,7 +114,7 @@ void setup() {
   rect2Color = color(200,0,0);    //red for stop
   //currentColor = color(200,0,0);
   offColor = color(100);      //if not recording data, indicator "off"/gray
-  onColor = color(250,0,0);      //if recording data, indicator "on"/red
+  onColor = color(250,0,0);   //if recording data, indicator "on"/red
   //(0,255,0) is green, (0,0,255) is blue, (255,0,0) is red
   rectHighlight = color(0,150,30);   //dull green
   rect2Highlight = color(150,0,0);   //dull red
@@ -208,17 +215,20 @@ void draw() {
       
       // CHOOSE WHICH LOADCELL TO TEST HERE ***************************************
       // make this a user input later ###
-      // or just plot both ###
+      // or just plot both ### yes
       // the plot only displays force1 (force from flat-side of tongs)
       // change [1] to [2] to test/display force2
       yy = float(token[1]); //DAT1 (force1)
       xx = int(token[3]); //CLK1 (time)
+      //yy2 = float(token[2]); //DAT2 (force2) //ADD THIS IN*
       
       //xx = int(token[2]); //CLK1 for testing one loadcell *****
       //println(xx); //xx didn't work because of newline without comma delim; fixed
       //println(yy);
       
       plot1.addPoint(xx,yy);
+      //add multiple points at once? probably bad, add whole new plot? same axes? how?
+      //plot2.addPoint(xx,yy2); //?
       
       
     }
@@ -328,6 +338,9 @@ void keyPressed() {   //*****************************************************
     c.reset();
     println(fileName);
     output = createWriter(fileName); //create new file in sketch directory //826
+    //create new file in Box directory //***//***//***//
+    //output = createWriter ( "C: \\ folder1 \\ folder2 \\ mytextfile.txt" ); //or
+    //output = createWriter ( "C: /folder1/folder2/mytextfile.txt" );
     output.println(HEADER_TEXT);
     //same as if user clicks enter button on gui screen
     
@@ -461,6 +474,9 @@ void mousePressed() {
     c.reset();
     println(fileName);
     output = createWriter(fileName); //create new file in sketch directory //826
+    //create new file in Box directory //***//***//***//
+    //output = createWriter ( "C: \\ folder1 \\ folder2 \\ mytextfile.txt" ); //or
+    //output = createWriter ( "C: /folder1/folder2/mytextfile.txt" );
     output.println(HEADER_TEXT);
     //same as if user pressed enter key on keyboard
     
